@@ -19,10 +19,14 @@ const newArr2 = function(){
   return console.log(c);
 }
 
-const arr2 =([1,2,3],[2,6,8,1],[8,1,3],[11,9,8,6,],[1,2],[6,7,3])
-
+const arra =[1,2,3]
+const arrb =[2,6,8,1]
+const arrc =[8,1,3]
+const arrd = [11,9,8,6,]
+const arre =[1,2]
+const arrf = [6,7,3]
 const newArr3 = function(){
-    const e = _.union(arr2)
+    const e = _.union(arra,arrb,arrc,arrd,arre,arrf)
     return console.log(e);
 }
 
