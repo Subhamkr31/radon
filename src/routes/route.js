@@ -4,19 +4,29 @@ const underscore = require('underscore')
 
 const router = express.Router();
 
-router.get('/test-me', function (req, res) {
-    myHelper.printDate()
-    myHelper.getCurrentMonth()
-    myHelper.getCohortData()
-    let firstElement = underscore.first(['Sabiha','Akash','Pritesh'])
-    console.log('The first element received from underscope function is '+firstElement)
-    res.send('My first ever api!')
+router.get('/movies', function (req, res) {
+   
+    const arr = ['Rang de basanti', 'Iron man', 'Inception', 'Batman begins']
+    res.send(arr)
 });
 
-router.get('/hello', function (req, res) {
-   
-    res.send('Hello there!')
-});
+router.get('/movies/:indexNumber', function(req,res){
+    const arr =['Rang de basanti', 'The shining', 'Lord of the rings', 'Batman begins']
+    let mov = arr.length
+
+    const a = arr.find((x) => req.params.indexNumber)
+    res.send(a)
+    // for(let i=0;i < arr.length;i++){
+    //     // console.log('The request objects is '+ JSON.stringify(req.params))
+
+    //     if(arr[i]=== req.params.indexNumber){
+    //         res.send(arr[i])
+    //     }else{
+    //         res.send("movie not found")
+    //     }
+    }
+
+})
 
 router.get('/candidates', function(req, res){
     console.log('Query paramters for this request are '+JSON.stringify(req.query))
