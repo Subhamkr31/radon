@@ -12,8 +12,6 @@ const sent = "Call toUpperCase on a hardcoded string"
 
 console.log(sent.toUpperCase());
 
-
-
 module.exports.trim = trim
 module.exports.b = b
 module.exports.sent = sent
