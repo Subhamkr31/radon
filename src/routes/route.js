@@ -10,35 +10,33 @@ router.get('/movies', function (req, res) {
     res.send(arr)
 });
 
+
+const arr =[  'Rang de basanti','The shining','Lord of the rings', 'Batman begins']
 router.get('/movies/:indexNumber', function(req,res){
-    const arr =['Rang de basanti', 'The shining', 'Lord of the rings', 'Batman begins']
-    let mov = arr.length
+    
 
-    const a = arr.find((x) => req.params.indexNumber)
+    const a = arr.filter((x) =>  req.params.indexNumber).find((x) =>  req.params.indexNumber )
+    // .find((x) =>x.length = req.params.indexNumber)
+    console.log('The request objects is '+ JSON.stringify(req.params))
+    console.log(a);
+    
+    
+    // x.a = req.params.indexNumber
     res.send(a)
-    // for(let i=0;i < arr.length;i++){
-    //     // console.log('The request objects is '+ JSON.stringify(req.params))
-
-    //     if(arr[i]=== req.params.indexNumber){
-    //         res.send(arr[i])
-    //     }else{
-    //         res.send("movie not found")
-    //     }
-    }
-
+         
 })
 
-router.get('/candidates', function(req, res){
-    console.log('Query paramters for this request are '+JSON.stringify(req.query))
-    let gender = req.query.gender
-    let state = req.query.state
-    let district = req.query.district
-    console.log('State is '+state)
-    console.log('Gender is '+gender)
-    console.log('District is '+district)
-    let candidates = ['Akash','Suman']
-    res.send(candidates)
-})
+// router.get('/candidates', function(req, res){
+//     console.log('Query paramters for this request are '+JSON.stringify(req.query))
+//     let gender = req.query.gender
+//     let state = req.query.state
+//     let district = req.query.district
+//     console.log('State is '+state)
+//     console.log('Gender is '+gender)
+//     console.log('District is '+district)
+//     let candidates = ['Akash','Suman']
+//     res.send(candidates)
+// })
 
 router.get('/candidates/:canidatesName', function(req, res){
     console.log('The request objects is '+ JSON.stringify(req.params))
