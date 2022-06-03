@@ -1,5 +1,4 @@
 const express = require('express');
-const myHelper = require('../util/helper')
 const underscore = require('underscore')
 
 const router = express.Router();
@@ -11,39 +10,47 @@ router.get('/movies', function (req, res) {
 });
 
 
-const arr =[  'Rang de basanti','The shining','Lord of the rings', 'Batman begins']
+
 router.get('/movies/:indexNumber', function(req,res){
     
-
-    const a = arr.filter((x) =>  req.params.indexNumber).find((x) =>  req.params.indexNumber )
-    // .find((x) =>x.length = req.params.indexNumber)
-    console.log('The request objects is '+ JSON.stringify(req.params))
-    console.log(a);
+    const arr =[  'Rang de basanti','The shining','Lord of the rings', 'Batman begins']
+ const index = req.params.indexNumber
+ if(index < arr.length){
+     movie = arr[index];
+ }else{
+     movie = ("enter valid index number");
+ }
     
-    
-    // x.a = req.params.indexNumber
-    res.send(a)
+    res.send(movie)
          
 })
 
-// router.get('/candidates', function(req, res){
-//     console.log('Query paramters for this request are '+JSON.stringify(req.query))
-//     let gender = req.query.gender
-//     let state = req.query.state
-//     let district = req.query.district
-//     console.log('State is '+state)
-//     console.log('Gender is '+gender)
-//     console.log('District is '+district)
-//     let candidates = ['Akash','Suman']
-//     res.send(candidates)
-// })
 
-router.get('/candidates/:canidatesName', function(req, res){
-    console.log('The request objects is '+ JSON.stringify(req.params))
-    console.log('Candidates name is '+req.params.canidatesName)
-    res.send('Done')
+let arr2 =[ { id: 1, name: 'The Shining' }, {id: 2, name: 'Incendies' }, { id: 3,
+name: 'Rang de Basanti'}, {id: 4, name: 'Finding Nemo' }]
+   
+router.get('/film',function(req, res){
+
+    res.send( arr2)
+
 })
 
+router.get( '/films/:filmId', function(req,res){
+    
+    let arr2 =[ {id: 1,name: 'The Shining'}, {id: 2,name: 'Incendies' }, {id: 3, name: 'Rang de Basanti' },
+    {id: 4, name: 'Finding Nemo' }]
+
+let ind = req.params.filmId
+
+for (let i =0; i < arr2.length; i++){
+   if(arr2[i].id === ind){
+    res.send(arr2[i])
+   }else{
+    res.send('No movie exists with this id')
+   }
+ } 
+
+})
 
 module.exports = router;
 // adding this comment for no reason
