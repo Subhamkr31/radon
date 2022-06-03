@@ -3,14 +3,14 @@ const underscore = require('underscore')
 
 const router = express.Router();
 
+///-------------------------01-------------------------------------------
 router.get('/movies', function (req, res) {
    
     const arr = ['Rang de basanti', 'Iron man', 'Inception', 'Batman begins']
     res.send(arr)
 });
 
-
-
+///-------------------------------02 and 03-------------------------------------
 router.get('/movies/:indexNumber', function(req,res){
     
     const arr =[  'Rang de basanti','The shining','Lord of the rings', 'Batman begins']
@@ -25,7 +25,7 @@ router.get('/movies/:indexNumber', function(req,res){
          
 })
 
-
+///-----------------------------04-----------------------------------------
 let arr2 =[ { id: 1, name: 'The Shining' }, {id: 2, name: 'Incendies' }, { id: 3,
 name: 'Rang de Basanti'}, {id: 4, name: 'Finding Nemo' }]
    
@@ -35,6 +35,8 @@ router.get('/film',function(req, res){
 
 })
 
+
+///------------------------------05------------------------------------------
 router.get( '/films/:filmId', function(req,res){
     
     let arr2 =[ {id: 1,name: 'The Shining'}, {id: 2,name: 'Incendies' }, {id: 3, name: 'Rang de Basanti' },
