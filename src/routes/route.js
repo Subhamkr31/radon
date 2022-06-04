@@ -43,16 +43,19 @@ let players =
 
 
 router.post("/players", function (req, res) {
-    let newArr = [req.body.name, req.body.dob, req.body.gender,req.body.city,req.body.sports]
-    players.push(newArr)
+    let newPlayer = req.body
 
-    if(players.push(newArr) == req.body.name){
-        
-        res.send({msg : req.body.name + "that already exists in the data", status: true})
+    for (let i = 0; i < players.length; i++) {
+        if (players[i].name === req.body.name) {
+
+            res.send("This player was already added!")
+
+        } else {
+            players.push(newPlayer)
+            res.send(players)
+
+        }
     }
-        res.send({ msg: players, status: true })
-
-    
 })
 
 
