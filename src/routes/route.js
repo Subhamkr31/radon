@@ -14,9 +14,11 @@ router.post("/createBook", BookController.createBook  )
 
 router.get("/bookList", BookController.bookList)
 
-router.get("/getBookInYear", BookController.getBookInYear)
+router.post("/getBookInYear", BookController.getBookInYear)
 
 router.get("/getRandomBooks",BookController.getRandomBooks)
+
+router.post("/ParticularBooks",BookController.ParticularBooks)
 
 router.get('/XINRBooks',BookController.XINRBooks)
 
