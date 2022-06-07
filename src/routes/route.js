@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-// const UserModel= require("../models/userModel.js")
-// const UserController= require("../controllers/userController")
+const AuthorModel = require("../models/authorModel")
 const BookController= require("../controllers/bookController");
 const bookModel = require('../models/bookModel');
 
@@ -10,16 +9,13 @@ router.get("/test-me", function (req, res) {
 })
 
 
-router.post("/createBook", BookController.createBook  )
+router.post("/createauthor", BookController.createauthor )
 
-router.get("/bookList", BookController.bookList)
+router.post("/createbook", BookController.createbook)
 
-router.post("/getBookInYear", BookController.getBookInYear)
+router.get("/getbook", BookController.getbook)
 
-router.get("/getRandomBooks",BookController.getRandomBooks)
+router.get("/gettwo", BookController.gettwo)
 
-router.post("/ParticularBooks",BookController.ParticularBooks)
-
-router.get('/XINRBooks',BookController.XINRBooks)
-
+router.get("/fbook",BookController.fbook)
 module.exports = router;
