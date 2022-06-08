@@ -42,17 +42,16 @@ const gettwo = async function(req,res){
 ////----------------------------------------------------------
 const fbook = async function (req,res){
 const cost = await BookModel.find({ price: {$gte: 50, $lte: 100}}).select({author_id:1})
-const data = await AuthorModel.find().select({author_name:1,author_id:1, _id:0})
+const data = await AuthorModel.find({ $or:[{author_id: cost[0].author_id},{author_id: cost[5].author_id}]}).select({author_name:1,author_id:1, _id:0})
 
 const authName = data.map((x) => x.author_name )
 // .forEach(x => {cost.author_id})
-console.log(data);
 console.log(cost);
+console.log(data);
 res.send({msg:authName})
 }
 
 module.exports.createauthor = createauthor
-
 module.exports.createbook = createbook
 module.exports.getbook =getbook
 module.exports.gettwo = gettwo
