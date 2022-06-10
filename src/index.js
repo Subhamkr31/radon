@@ -14,37 +14,35 @@ mongoose.connect("mongodb+srv://Subham_1234:Subham1@cluster0.fzu3b.mongodb.net/?
     .then(() => console.log("MongoDb is connected"))
     .catch(err => console.log(err))
 
+// app.use(
+//     function (req, res, next) {
+//         console.log("inside GLOBAL MW");
+//         next();
+//     }
+// );
+
+////---------------------------------------------------------
+
 app.use(
     function (req, res, next) {
-        console.log("inside GLOBAL MW");
-        next();
-    }
-);
-
-
-function getThecurrentTimeString() {
-    return new Date().toString();
-}
-app.use(
-    function (req, res, next) {
-        req.time = getThecurrentTimeString();
+        req.time = new Date().toString();
         console.log(req.time);
         next();
     }
 )
+/////-------------------------------------------------------
 app.use(
     function (req, res, next) {
-        const parseIp = (req) =>
-            req.headers['x-forwarded-for']?.split(',').shift()
-            || req.socket?.remoteAddress
-        console.log(parseIp(req))
+        let ip = req.ip
+        console.log(ip);
+      
         next();
     });
-
+//////-------------------------------------------------------
 app.use(
     function (req, res, next) {
 
-        console.dir(req.path) // '/new'
+        console.dir(req.originalUrl) // '/new'
 
         next()
     })
