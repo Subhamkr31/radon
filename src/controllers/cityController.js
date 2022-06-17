@@ -28,6 +28,7 @@ let weatherTemp = async function (req, res) {
             cityArray.unshift(obj)
         }
         // console.log(cityArray)
+        // sort asending to descending
         let sorted = cityArray.sort((x, y) => { return x.temp - y.temp })
         console.log(sorted)
     
