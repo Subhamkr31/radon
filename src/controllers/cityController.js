@@ -3,34 +3,40 @@ let axios = require("axios");
 
 
 
-/////-----------------------------------------------------------//////
+/////---------------------------assignment--------------------------------//////
 
 let weatherTemp = async function (req, res) {
 
-    // let ss = req.query.id
-    // let dd = req.query.appid
-try{
-    let arr = ['Bengaluru', 'Mumbai', 'Delhi', "Kolkata", "Chennai", "London", "Moscow"]
-    let arr1 = []
 
-    for (let i = 0; i < arr.length; i++) {
-        // let options = {
-        //     method: "get",
-        //     url: `http://api.openweathermap.org/data/2.5/weather?q= ${arr[i]}&appid=1f4af29dee22ed77c6eb44d7bf989374`
-        // }
-        // let result = await axios(options)
-        let result = await axios.get( `http://api.openweathermap.org/data/2.5/weather?q= ${arr[i]}&appid=1f4af29dee22ed77c6eb44d7bf989374`)
-        console.log(result.data.main.temp)
+    try {
+        let city = ['Bengaluru', 'Mumbai', 'Delhi', "Kolkata", "Chennai", "London", "Moscow"]
+        let cityArray = []
 
-        console.log(result)
-        let data = result.data
-        res.status(200).send({ msg: data, status: true })
+        for (let i = 0; i < city.length; i++) {
+
+            let obj = { city: city[i] }
+
+            let option = {
+                method : "get",
+                url:`http://api.openweathermap.org/data/2.5/weather?q=${city[i]}&appid=1f4af29dee22ed77c6eb44d7bf989374`
+            }
+
+            let result = await axios(option)
+            // console.log(result.data.main.temp)
+
+            obj.temp = result.data.main.temp
+            cityArray.unshift(obj)
+        }
+        // console.log(cityArray)
+        let sorted = cityArray.sort((x, y) => { return x.temp - y.temp })
+        console.log(sorted)
+    
+        res.status(200).send({ status: true, data: sorted })
+
+
+    } catch (err) {
+        res.status(500).send(err.message)
     }
-
-
-} catch (err) {
-    res.status(500).send(err.message)
-}
 
 }
 
@@ -69,11 +75,11 @@ const createBook = async function (req, res) {
     try {
         let data = req.body
         console.log(data)
-        if ( Object.keys(data).length != 0) {
+        if (Object.keys(data).length != 0) {
             let savedData = await BookModel.create(data)
             res.status(201).send({ msg: savedData })
         }
-        else res.status(400).send({ msg: "BAD REQUEST"})
+        else res.status(400).send({ msg: "BAD REQUEST" })
     }
     catch (err) {
         console.log("This is the error :", err.message)
